@@ -1,13 +1,21 @@
-import React from "react";
+import React, { Suspense } from "react";
 import UserTable from "./UserTable";
+import Link from "next/link";
 
-const usersPage = async () => {
+interface Props {
+  searchParams: { sortOrder: string; orderBy: string };
+}
+
+const UsersPage = async ({ searchParams: { sortOrder, orderBy } }: Props) => {
   return (
     <>
       <h1>Users</h1>
-      <UserTable />
+      <Link href="/users/new" className="btn ml-2">
+        New User
+      </Link>
+        <UserTable sortOrder={sortOrder} orderBy={orderBy} />
     </>
   );
 };
 
-export default usersPage;
+export default UsersPage;
